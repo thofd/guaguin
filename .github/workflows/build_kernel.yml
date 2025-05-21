@@ -526,16 +526,6 @@ jobs:
           key: build-kernel-${{ env.DEVICE_NAME }}${{ env.UPLOADNAME }}
           max-size: 2G
 
-# --- 新增步骤：复制 SUSFS 头文件到内核 include 目录 ---
-      - name: Copy susfs header to include/linux
-        run: |
-         if [ -f fs/susfs/include/susfs.h ]; then
-         cp fs/susfs/include/susfs.h include/linux/susfs.h
-         else
-         echo "Warning: susfs.h not found, skipping copy"
-         fi
-
-
       - name: Build Kernel
         run: |
           MERGE_CONFIG_FILES=("vendor/debugfs.config" "vendor/lahaina_QGKI.config")
